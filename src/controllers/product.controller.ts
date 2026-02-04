@@ -12,6 +12,10 @@ export const createProduct = async (
       productData.imageUrl = req.file.path;
     }
 
+    if (productData.categoryId) {
+      productData.category = productData.categoryId;
+    }
+
     const product = new Product(productData);
     await product.save();
     res.status(201).json(product);
